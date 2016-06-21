@@ -3,15 +3,16 @@ package analyzers;
 import exceptions.PDLException;
 import structures.Token;
 
+import java.io.BufferedReader;
+import java.io.Reader;
 import java.util.List;
 
-public class Tokenizer {
+public class Tokenizer extends BufferedReader {
 
-    Readable readable;
     List<Token> tokens;
 
-    public Tokenizer(Readable readable){
-        this.readable = readable;
+    public Tokenizer(Reader in) {
+        super(in);
     }
 
     public void process() throws PDLException {
