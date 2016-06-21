@@ -1,5 +1,6 @@
 package analyzers;
 
+import enums.TokenType;
 import exceptions.PDLException;
 import structures.Token;
 
@@ -21,10 +22,12 @@ public class Tokenizer extends BufferedReader {
 
         String state = "";
         int value = -1, lineCounter = 1;
+        TokenType tokenType = TokenType.UNDEFINED;
 
         while((value = read()) != -1) {
 
-            
+            char valueChar =  (char) value;
+
 
         }
 
