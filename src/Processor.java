@@ -12,9 +12,7 @@ public class Processor {
 
         try {
 
-            BufferedReader br = new BufferedReader(new FileReader(args[0]));
-
-            Tokenizer tokenizer = new Tokenizer(br);
+            Tokenizer tokenizer = new Tokenizer(new FileReader(args[0]));
             tokenizer.process();
 
             SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer(tokenizer.getTokens());
