@@ -10,7 +10,7 @@ public class Tokenizer {
     Readable readable;
     List<Token> tokens;
 
-    Tokenizer(Readable readable){
+    public Tokenizer(Readable readable){
         this.readable = readable;
     }
 

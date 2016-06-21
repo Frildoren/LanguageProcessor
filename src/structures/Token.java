@@ -7,17 +7,22 @@ public class Token {
     TokenType type;
     String value;
 
-    Token(TokenType type){
+    public Token(TokenType type){
         this(type, null);
     }
 
-    Token(String value){
+    public Token(String value){
         this(TokenType.UNDEFINED, value);
     }
 
-    Token(TokenType type, String value){
+    public Token(TokenType type, String value){
         this.type = type;
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "<" + type.name() + ", " + value + '>';
     }
 
     public TokenType getType() {

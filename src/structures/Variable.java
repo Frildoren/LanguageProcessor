@@ -7,11 +7,11 @@ public class Variable {
     VariableType type;
     VariableType returnType;
 
-    Variable(VariableType type) {
+    public Variable(VariableType type) {
         this(type, false);
     }
 
-    Variable(VariableType type, boolean isFunction){
+    public Variable(VariableType type, boolean isFunction){
         if(isFunction){
             this.type = VariableType.FUNCTION;
             this.returnType = type;
@@ -20,5 +20,20 @@ public class Variable {
         }
     }
 
+    public VariableType getType() {
+        return type;
+    }
+
+    public void setType(VariableType type) {
+        this.type = type;
+    }
+
+    public VariableType getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(VariableType returnType) {
+        this.returnType = returnType;
+    }
 }
 

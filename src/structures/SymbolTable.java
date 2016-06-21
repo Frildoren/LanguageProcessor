@@ -1,7 +1,21 @@
 package structures;
 
-/**
- * Created by frildoren on 21/06/16.
- */
-public class SymbolTable {
+import java.util.HashMap;
+
+public class SymbolTable extends HashMap<String, Variable> {
+
+    String name;
+
+    public SymbolTable(String name){
+        super();
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
