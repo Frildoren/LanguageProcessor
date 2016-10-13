@@ -1,21 +1,11 @@
 package structures;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
-public class SymbolTable extends HashMap<String, Variable> {
+public class SymbolTable extends TreeMap<String, Symbol> {
 
-    String name;
-
-    public SymbolTable(String name){
-        super();
-        this.name = name;
+    public SymbolTable(){
+        super(String.CASE_INSENSITIVE_ORDER);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

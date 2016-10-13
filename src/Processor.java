@@ -1,25 +1,20 @@
-import analyzers.SemanticAnalyzer;
-import analyzers.Tokenizer;
+import analyzers.tokenizer.Tokenizer;
+import analyzers.tokenizer.TokenizerImpl;
 import exceptions.PDLException;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.StringReader;
 
 public class Processor {
 
     public static void main(String[] args){
 
         try {
+            BufferedReader reader = new BufferedReader(new StringReader("//polla\n/="));
+            Tokenizer tokenizer = new TokenizerImpl(reader);
 
-            Tokenizer tokenizer = new Tokenizer(new FileReader(args[0]));
-            tokenizer.process();
+            tokenizer.readToken();
 
-            SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer(tokenizer.getTokens());
-            semanticAnalyzer.process();
-
-        } catch(IOException e){
-            p(e.getMessage());
         } catch (PDLException e) {
             p(e.getMessage());
         }

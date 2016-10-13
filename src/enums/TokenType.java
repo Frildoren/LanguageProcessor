@@ -2,7 +2,7 @@ package enums;
 
 public enum TokenType {
 
-    UNDEFINED,
-
+    IDENTIFIER,
+    DIVIDE_AND_ASSIGN,
 
 }

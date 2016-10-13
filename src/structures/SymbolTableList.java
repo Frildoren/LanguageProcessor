@@ -1,30 +1,43 @@
 package structures;
 
-import enums.VariableType;
-import exceptions.PDLException;
-import exceptions.VariableNotFoundException;
+import exceptions.SymbolNotFoundException;
 
 import java.util.ArrayList;
 
 public class SymbolTableList extends ArrayList<SymbolTable> {
 
-    public SymbolTable last(){
-        return get(size()-1);
+    public SymbolTableList(){
+        SymbolTable reservedWords = new SymbolTable();
+        add(reservedWords);
     }
 
-    public SymbolTable findByToken(Token token) throws PDLException {
-        //ToDo: Easy
-        return null;
+    public Symbol find(String index) throws SymbolNotFoundException {
+        for(int i=size()-1; i>=0; i--){
+            SymbolTable symbolTable = get(i);
+            Symbol s = symbolTable.get(index);
+
+            if(s != null){
+                return s;
+            }
+        }
+
+        throw new SymbolNotFoundException();
     }
 
-    public VariableType findVariableType(Token token) throws PDLException {
-        SymbolTable st = findByToken(token);
-        Variable v = st.get(token.getValue());
+    public Symbol find(Token token) throws SymbolNotFoundException {
+        return find(token.getValue());
+    }
 
-        if(v == null)
-            throw new VariableNotFoundException();
+    public void put(String index, Symbol symbol){
+        get(size()-1).put(index, symbol);
+    }
 
-        return v.getType();
+    public void pushTable(){
+        add(new SymbolTable());
+    }
+
+    public void popTable(){
+        remove(size()-1);
     }
 
 }
