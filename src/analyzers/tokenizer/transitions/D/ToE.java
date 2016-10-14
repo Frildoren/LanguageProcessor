@@ -3,6 +3,7 @@ package analyzers.tokenizer.transitions.D;
 import analyzers.tokenizer.TokenizerImpl;
 import analyzers.tokenizer.transitions.Transition;
 import enums.TokenType;
+import exceptions.ConstantIntegerException;
 import structures.Token;
 
 public class ToE extends Transition {
@@ -18,7 +19,10 @@ public class ToE extends Transition {
 
     @Override
     public Token semanticRules() {
-        getTokenizer().read();
-        return new Token(TokenType.CONSTANT_INTEGER);
+        if (Integer.parseInt(getTokenizer().getLexeme()) > 1<<15){
+            throw new ConstantIntegerException();
+        }
+
+        return new Token(TokenType.CONSTANT_INTEGER, getTokenizer().getLexeme());
     }
 }
