@@ -8,6 +8,7 @@ public enum TokenType {
     OP_ASSIGN,
     OPEN_PARENTHESIS,
     CLOSE_PARENTHESIS,
+    COMMA,
 
 
 }
