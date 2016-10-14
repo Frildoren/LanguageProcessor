@@ -20,6 +20,6 @@ public class ToR extends Transition {
     @Override
     public Token semanticRules() {
         getTokenizer().read();
-        return new Token(TokenType.OPEN_BRACE);
+        return new Token(TokenType.CLOSE_BRACE);
     }
 }
