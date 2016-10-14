@@ -11,5 +11,7 @@ public enum TokenType {
     COMMA,
     OPEN_BRACE,
     CLOSE_BRACE,
+    COLON,
+    SEMICOLON,
 
 }
