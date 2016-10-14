@@ -16,6 +16,7 @@ public class TokenizerImpl implements Tokenizer {
 
     private char currentChar;
     private char currentState;
+    private String lexeme;
 
     public TokenizerImpl(BufferedReader in) {
         this.in = in;
@@ -37,6 +38,7 @@ public class TokenizerImpl implements Tokenizer {
 
     private void resetState(){
         toState('S');
+        lexeme = "";
     }
 
     public Token readToken(){
@@ -70,6 +72,14 @@ public class TokenizerImpl implements Tokenizer {
 
     public char getCurrentChar(){
         return currentChar;
+    }
+
+    public void lexemeAppend(char c){
+        lexeme += c;
+    }
+
+    public String getLexeme() {
+        return lexeme;
     }
 
 }
