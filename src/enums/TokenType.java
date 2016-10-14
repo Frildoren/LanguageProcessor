@@ -13,5 +13,6 @@ public enum TokenType {
     CLOSE_BRACE,
     COLON,
     SEMICOLON,
+    NEW_LINE,
 
 }
