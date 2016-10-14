@@ -45,7 +45,7 @@ public class TokenizerImpl implements Tokenizer {
 
         Token token = null;
         while(token == null){
-            if(currentChar < 0 || currentChar == 65535){
+            if(currentChar < 0){
                 throw new EndOfInputException();
             }
 

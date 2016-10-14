@@ -3,6 +3,6 @@ package exceptions;
 
 public class EndOfInputException extends PDLException {
     public EndOfInputException() {
-        super("Fin del input");
+        super("End of input");
     }
 }

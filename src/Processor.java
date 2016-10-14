@@ -10,10 +10,12 @@ public class Processor {
     public static void main(String[] args){
 
         try {
-            BufferedReader reader = new BufferedReader(new StringReader("//polla\n/="));
+            BufferedReader reader = new BufferedReader(new StringReader("84"));
             Tokenizer tokenizer = new TokenizerImpl(reader);
 
-            tokenizer.readToken();
+            while(true) {
+                p(tokenizer.readToken().toString());
+            }
 
         } catch (PDLException e) {
             p(e.getMessage());
