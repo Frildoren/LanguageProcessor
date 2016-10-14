@@ -8,13 +8,13 @@ import structures.Token;
 /**
  * Created by garri on 14/10/16.
  */
-public class ToQ extends Transition {
-    public ToQ(TokenizerImpl tokenizer) {
+public class ToR extends Transition {
+    public ToR(TokenizerImpl tokenizer) {
         super(tokenizer);
     }
 
     @Override
-    public String inputRule() { return "\\{";
+    public String inputRule() { return "\\}";
     }
 
     @Override
