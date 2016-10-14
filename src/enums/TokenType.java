@@ -9,6 +9,7 @@ public enum TokenType {
     OPEN_PARENTHESIS,
     CLOSE_PARENTHESIS,
     COMMA,
-
+    OPEN_BRACE,
+    CLOSE_BRACE,
 
 }
