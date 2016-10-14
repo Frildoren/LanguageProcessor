@@ -17,6 +17,7 @@ public class ToD extends Transition {
 
     @Override
     public Token semanticRules() {
+        getTokenizer().lexemeAppend(getTokenizer().getCurrentChar());
         getTokenizer().toState('D');
         getTokenizer().read();
         return null;
