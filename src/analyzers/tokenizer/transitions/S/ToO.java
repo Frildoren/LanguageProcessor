@@ -8,19 +8,18 @@ import structures.Token;
 /**
  * Created by garri on 14/10/16.
  */
-public class ToN extends Transition {
-    public ToN(TokenizerImpl tokenizer) {
+public class ToO extends Transition {
+    public ToO(TokenizerImpl tokenizer) {
         super(tokenizer);
     }
 
     @Override
-    public String inputRule() {
-        return "(";
+    public String inputRule() { return "\\)";
     }
 
     @Override
     public Token semanticRules() {
         getTokenizer().read();
-        return new Token(TokenType.OPEN_PARENTHESIS);
+        return new Token(TokenType.CLOSE_PARENTHESIS);
     }
 }
