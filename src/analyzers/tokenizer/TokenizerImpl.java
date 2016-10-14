@@ -3,6 +3,7 @@ package analyzers.tokenizer;
 import analyzers.tokenizer.transitions.Transition;
 import exceptions.EndOfInputException;
 import exceptions.PDLException;
+import exceptions.UnexpectedInputException;
 import structures.Token;
 
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ public class TokenizerImpl implements Tokenizer {
 
     public TokenizerImpl(BufferedReader in) {
         this.in = in;
-        currentState = 'S';
+        resetState();
         read();
     }
 
@@ -34,6 +35,10 @@ public class TokenizerImpl implements Tokenizer {
         currentState = newState;
     }
 
+    private void resetState(){
+        toState('S');
+    }
+
     public Token readToken(){
 
         Token token = null;
@@ -42,15 +47,23 @@ public class TokenizerImpl implements Tokenizer {
                 throw new EndOfInputException();
             }
 
+            boolean anyValid = false;
+
             List<Transition> transitions = Transition.getTransitions(currentState, this);
             for(Transition t : transitions){
                 if(t.isValid()){
+                    anyValid = true;
                     token = t.semanticRules();
                     break;
                 }
             }
+
+            if(!anyValid){
+                throw new UnexpectedInputException(String.format("Unexpected character: '%c'", currentChar));
+            }
         }
 
+        resetState();
         return token;
 
     }
