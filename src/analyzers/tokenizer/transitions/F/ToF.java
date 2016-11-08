@@ -16,6 +16,7 @@ public class ToF extends Transition {
 
     @Override
     public Token semanticRules() {
+        getTokenizer().lexemeAppend(getTokenizer().getCurrentChar());
         getTokenizer().toState('F');
         getTokenizer().read();
         return null;
