@@ -17,6 +17,7 @@ public class ToH extends Transition {
 
     @Override
     public Token semanticRules() {
+        getTokenizer().lexemeAppend(getTokenizer().getCurrentChar());
         getTokenizer().toState('H');
         getTokenizer().read();
         return null;
