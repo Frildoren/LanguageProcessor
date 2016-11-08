@@ -18,7 +18,7 @@ public class ToI extends Transition {
 
     @Override
     public Token semanticRules() {
-        getTokenizer().read();
-        return new Token(TokenType.CONSTANT_STRING);    // TODO: Change ¿TokenType?.
+        //TODO: Add to symbol table.
+        return new Token(TokenType.IDENTIFIER, getTokenizer().getLexeme());
     }
 }
