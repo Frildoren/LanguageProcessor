@@ -18,6 +18,6 @@ public class ToG extends Transition {
     @Override
     public Token semanticRules() {
         getTokenizer().read();
-        return new Token(TokenType.CONSTANT_STRING);
+        return new Token(TokenType.CONSTANT_STRING, getTokenizer().getLexeme());
     }
 }
