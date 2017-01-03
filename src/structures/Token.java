@@ -11,10 +11,6 @@ public class Token {
         this(type, null);
     }
 
-    public Token(String value){
-        this(TokenType.UNDEFINED, value);
-    }
-
     public Token(TokenType type, String value){
         this.type = type;
         this.value = value;
