@@ -14,5 +14,10 @@ public enum TokenType {
     COLON,
     SEMICOLON,
     NEW_LINE,
+    CONSTANT_INTEGER,
+    CONSTANT_STRING,
+    OP_ARITHMETIC_ADD,
+    OP_RELATIONAL_SMALLER_THAN,
+
 
 }
