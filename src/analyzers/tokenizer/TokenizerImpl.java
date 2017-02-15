@@ -45,10 +45,6 @@ public class TokenizerImpl implements Tokenizer {
 
         Token token = null;
         while(token == null){
-            if(currentChar < 0){
-                throw new EndOfInputException();
-            }
-
             boolean anyValid = false;
 
             List<Transition> transitions = Transition.getTransitions(currentState, this);
@@ -61,8 +57,13 @@ public class TokenizerImpl implements Tokenizer {
             }
 
             if(!anyValid){
+                if(currentChar < 0 || currentChar == Character.MAX_VALUE) {
+                    throw new EndOfInputException();
+                }
+
                 throw new UnexpectedInputException(String.format("Unexpected character: '%c'", currentChar));
             }
+
         }
 
         resetState();
