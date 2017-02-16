@@ -12,7 +12,7 @@ public class ToS extends Transition {
 
     @Override
     public String inputRule() {
-        return "[^\\S]";
+        return "[^\\S\\n]";
     }
 
     @Override

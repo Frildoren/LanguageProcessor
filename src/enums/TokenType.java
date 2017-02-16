@@ -1,5 +1,7 @@
 package enums;
 
+import java.util.EnumSet;
+
 public enum TokenType {
 
     IDENTIFIER,
@@ -16,44 +18,22 @@ public enum TokenType {
     CONSTANT_STRING,
     OP_ARITHMETIC_ADD,
     OP_RELATIONAL_SMALLER_THAN,
-
-    // Arithmetics
-    ADD,
-    SUB,
-    MULTIPLIES,
-    DIVIDES,
-    MODULUS,
-
-    // Relationals
-    EQUAL,
-    INEQUAL,
-    LESS,
-    GREATER,
-    LESS_EQUAL,
-    GREATER_EQUAL,
-
-    // Logical
-    AND,
-    OR,
-    NEGATE,
-    BITWISE_AND_ASSIGN,
-
-    // Punctuation
-    OPEN_BRACKET,
-    CLOSE_BRACKET,
-    OPEN_CURLY_BRACKET,
-    CLOSE_CURLY_BRACKET,
     COMMA,
     SEMICOLON,
 
-    // Others
+    //Reserved words
+    VAR,
     TRUE,
     FALSE,
-    VAR,
-    CHAR,
-    BOOLEAN,
-    STRING,
-    INTEGER,
-    END,
+    WRITE,
+    PROMPT,
+    INT,
+    CHARS,
+    BOOL,
+    IF,
+    ELSE,
+    RETURN;
+
+    public static final EnumSet<TokenType> RESERVED_WORDS = EnumSet.of(VAR, TRUE, FALSE, WRITE, PROMPT, INT, CHARS, BOOL, IF, ELSE, RETURN);
 
 }

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class SymbolTableList extends ArrayList<SymbolTable> {
 
     public SymbolTableList(){
-        SymbolTable reservedWords = new SymbolTable();
-        add(reservedWords);
+        SymbolTable root = new SymbolTable();
+        add(root);
     }
 
     public Symbol find(String index) throws SymbolNotFoundException {
@@ -29,7 +29,8 @@ public class SymbolTableList extends ArrayList<SymbolTable> {
     }
 
     public void put(String index, Symbol symbol){
-        get(size()-1).put(index, symbol);
+        if(!get(size()-1).containsKey(index))
+            get(size()-1).put(index, symbol);
     }
 
     public void pushTable(){
