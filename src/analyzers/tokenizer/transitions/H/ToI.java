@@ -13,12 +13,25 @@ public class ToI extends Transition {
 
     @Override
     public String inputRule() {
-        return "[^a-zA-Z\\d_]"; //TODO: Review if this regex it's valid for --> o.c
+        return "[^a-zA-Z\\d_]";
     }
 
     @Override
     public Token semanticRules() {
-        //TODO: Add to symbol table.
-        return new Token(TokenType.IDENTIFIER, getTokenizer().getLexeme());
+        TokenType reservedWord = getReservedWord(getTokenizer().getLexeme());
+        if(reservedWord != null){
+            return new Token(reservedWord, null);
+        } else {
+            return new Token(TokenType.IDENTIFIER, getTokenizer().getLexeme());
+        }
+    }
+
+    private TokenType getReservedWord(String lexeme){
+        for (TokenType reservedWord : TokenType.RESERVED_WORDS) {
+            if(reservedWord.name().toLowerCase().equals(lexeme))
+                return reservedWord;
+        }
+
+        return null;
     }
 }
