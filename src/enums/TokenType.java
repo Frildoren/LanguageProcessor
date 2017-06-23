@@ -32,8 +32,9 @@ public enum TokenType {
     BOOL,
     IF,
     ELSE,
-    RETURN;
+    RETURN,
+    FUNCTION;
 
-    public static final EnumSet<TokenType> RESERVED_WORDS = EnumSet.of(VAR, TRUE, FALSE, WRITE, PROMPT, INT, CHARS, BOOL, IF, ELSE, RETURN);
+    public static final EnumSet<TokenType> RESERVED_WORDS = EnumSet.of(VAR, TRUE, FALSE, WRITE, PROMPT, INT, CHARS, BOOL, IF, ELSE, RETURN, FUNCTION);
 
 }
