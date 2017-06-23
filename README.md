@@ -1,5 +1,7 @@
 # JavaScript-PL README (PDL Practice)
 
+[Here is the picture of the Analyzer](http://i.imgur.com/OwbBsDt.jpg)
+
 [Here is the main practice info](http://www-lt.ls.fi.upm.es/compiladores/procesadores/Practica.html)
 
 [JavaScript-PL Main Info](http://www-lt.ls.fi.upm.es/compiladores/procesadores/IntroJavaScript.html)
