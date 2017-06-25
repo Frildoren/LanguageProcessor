@@ -2,7 +2,6 @@ package analyzers.syntactic;
 
 import analyzers.syntactic.elements.Element;
 import analyzers.syntactic.elements.NotTerminalElement;
-import analyzers.syntactic.elements.TerminalElement;
 import analyzers.syntactic.elements.notTerminals.P;
 import analyzers.syntactic.elements.terminals.Lambda;
 import analyzers.syntactic.elements.terminals.TokenElement;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-public class SyntacticAnalyzerImpl implements SyntacticAnalizer {
+public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
     /*
     P -> F Z P | B Z P | Z P
