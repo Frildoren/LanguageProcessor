@@ -14,14 +14,14 @@ public class J extends NotTerminalElement {
         //J -> Z J | B Z J | break Z J | I
         return Arrays.asList(
                 Arrays.asList(new Element[]{
-                        new Z(),
-                        new J()}),
-                Arrays.asList(new Element[]{
                         new B(),
                         new Z(),
                         new J()}),
                 Arrays.asList(new Element[]{
                         new TokenElement(TokenType.BREAK),
+                        new Z(),
+                        new J()}),
+                Arrays.asList(new Element[]{
                         new Z(),
                         new J()}),
                 Arrays.asList(new Element[]{

@@ -22,13 +22,25 @@ public abstract class NotTerminalElement extends BaseElement {
 
     @Override
     public List<Element> getFirst(){
+        return getFirst(new ArrayList<>());
+    }
+
+    @Override
+    public List<Element> getFirst(List<Class<? extends Element>> done){
         List<Element> result = new ArrayList<>();
-        getBranches().forEach(elements -> {
+        getBranchesClasses().forEach(elements -> {
             int i;
             for(i=0; i<elements.size(); i++) {
-                List<Element> first = elements.get(i).getFirst();
-                if (first.contains(new Lambda())) {
-                    first.remove(new Lambda());
+                if(elements.get(i) instanceof NotTerminalElement) {
+                    if (done.contains(elements.get(i).getClass())) {
+                        break;
+                    }
+                    done.add(elements.get(i).getClass());
+                }
+
+                result.addAll(elements.get(i).getFirst(done));
+                if (result.contains(new Lambda()) && !done.isEmpty()) {
+                    result.remove(new Lambda());
                 } else {
                     break;
                 }
@@ -39,6 +51,14 @@ public abstract class NotTerminalElement extends BaseElement {
             }
         });
 
+        return result;
+    }
+
+    public List<List<Element>> getBranchFirsts(){
+        List<List<Element>> result = new ArrayList<>();
+        getBranchesClasses().forEach(elements -> {
+            result.add(elements.get(0).getFirst());
+        });
         return result;
     }
 

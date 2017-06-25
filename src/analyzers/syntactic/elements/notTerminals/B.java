@@ -27,12 +27,10 @@ public class B extends NotTerminalElement {
                         new TokenElement(TokenType.SWITCH),
                         new TokenElement(TokenType.OPEN_PARENTHESIS),
                         new E(),
-                        new TokenElement(TokenType.CLOSE_PARENTHESIS)}),
-                Arrays.asList(new Element[]{
+                        new TokenElement(TokenType.CLOSE_PARENTHESIS),
                         new TokenElement(TokenType.OPEN_BRACE),
                         new Z(),
                         new I(),
-                        new Z(),
                         new TokenElement(TokenType.CLOSE_BRACE)}),
                 Arrays.asList(new Element[]{
                         new S()})
