@@ -9,6 +9,8 @@ public abstract class NotTerminalElement extends BaseElement {
 
     public abstract List<List<Element>> getBranchesClasses();
 
+    public abstract int getRuleIndex();
+
     public List<List<Element>> getBranches(){
         List<List<Element>> result = new ArrayList<>();
         getBranchesClasses().forEach(classes -> {
