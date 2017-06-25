@@ -17,4 +17,8 @@ public class Z extends NotTerminalElement {
                 Arrays.asList(new Element[]{ new TokenElement(TokenType.SEMICOLON), new Y() })
         );
     }
+
+    public int getRuleIndex() {
+        return 2;
+    }
 }

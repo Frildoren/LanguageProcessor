@@ -19,4 +19,9 @@ public class E extends NotTerminalElement {
                 Arrays.asList(new Element[]{ new V(), new R() })
         );
     }
+
+    public int getRuleIndex() {
+        return 17;
+    }
+
 }

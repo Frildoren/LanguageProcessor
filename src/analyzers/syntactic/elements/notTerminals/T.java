@@ -20,4 +20,9 @@ public class T extends NotTerminalElement {
                 Arrays.asList(new Element[] {new TokenElement(TokenType.CHARS)})
         );
     }
+
+    public int getRuleIndex() {
+        return 6;
+    }
+
 }

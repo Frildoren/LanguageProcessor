@@ -36,4 +36,9 @@ public class B extends NotTerminalElement {
                         new S()})
         );
     }
+
+    public int getRuleIndex() {
+        return 9;
+    }
+
 }

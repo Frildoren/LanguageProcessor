@@ -27,4 +27,8 @@ public class F extends NotTerminalElement {
                 })
         );
     }
+
+    public int getRuleIndex() {
+        return 4;
+    }
 }

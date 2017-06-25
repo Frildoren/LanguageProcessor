@@ -20,4 +20,9 @@ public class X extends NotTerminalElement {
                         new Lambda()})
         );
     }
+
+    public int getRuleIndex() {
+        return 12;
+    }
+
 }

@@ -17,5 +17,8 @@ public class P extends NotTerminalElement {
         );
     }
 
+    public int getRuleIndex() {
+        return 1;
+    }
 
 }
