@@ -10,4 +10,9 @@ public class TerminalElement extends BaseElement {
         return Arrays.asList(new Element[]{ this });
     }
 
+    @Override
+    public List<Element> getFirst(List<Class<? extends Element>> done) {
+        return getFirst();
+    }
+
 }
