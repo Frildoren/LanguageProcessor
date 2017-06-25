@@ -1,0 +1,7 @@
+var int a;
+a = 3;
+
+function bool fun( int b, int c)
+{
+	return a < b;
+}
