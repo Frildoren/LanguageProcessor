@@ -32,4 +32,9 @@ public class TokenElement extends TerminalElement {
         result = 31 * result + (tokenType != null ? tokenType.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return getTokenType().toString();
+    }
 }
