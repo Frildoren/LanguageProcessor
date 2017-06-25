@@ -31,4 +31,9 @@ public class S extends NotTerminalElement {
                         new TokenElement(TokenType.CLOSE_PARENTHESIS)})
         );
     }
+
+    public int getRuleIndex() {
+        return 10;
+    }
+
 }

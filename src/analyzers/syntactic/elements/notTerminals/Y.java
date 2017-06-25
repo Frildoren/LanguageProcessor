@@ -21,4 +21,8 @@ public class Y extends NotTerminalElement {
         );
     }
 
+    public int getRuleIndex() {
+        return 3;
+    }
+
 }

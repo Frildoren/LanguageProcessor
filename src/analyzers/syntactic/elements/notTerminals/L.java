@@ -21,4 +21,9 @@ public class L extends NotTerminalElement {
                         new Lambda()})
         );
     }
+
+    public int getRuleIndex() {
+        return 13;
+    }
+
 }

@@ -22,4 +22,9 @@ public class Q extends NotTerminalElement {
                         new Lambda()})
         );
     }
+
+    public int getRuleIndex() {
+        return 14;
+    }
+
 }

@@ -28,4 +28,9 @@ public class J extends NotTerminalElement {
                         new I()})
         );
     }
+
+    public int getRuleIndex() {
+        return 16;
+    }
+
 }
