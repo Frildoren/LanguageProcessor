@@ -18,8 +18,8 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
     /*
     P -> F Z P | B Z P | Z P
-    Z -> eol Y
-    Y -> eol | lambda
+    Z -> eol Y | ; Y
+    Y -> eol Y | ; Y | lambda
     F -> function H id ( A ) Z { Z C }
     H -> T | lambda
     T -> int | bool | chars
@@ -34,7 +34,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     Q -> , E Q | lambda
     I -> case int_const : J | lambda
     J -> B Z J | break Z J | Z J | I
-    E -> ! E | V R
+    E -> ! E | V R | true | false
     R -> + E | < E | lambda
     C -> B Z C | lambda
     V -> id U | ( E ) | int_const | string_const
