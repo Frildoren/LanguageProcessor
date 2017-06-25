@@ -1,0 +1,59 @@
+Terminales = { id /= ! = ( ) { } : ; eol int_const string_const + < , var true false write prompt int chars bool if else return break case switch function lambda }
+NoTerminales = { P Z Y F H T A K B S W X L Q I J E R C V U } 
+Axioma = P 
+Producciones = { 
+	P -> F Z P
+	P -> B Z P
+	P -> Z P
+	Z -> eol Y
+	Z -> ; Y
+	Y -> eol Y
+	Y -> ; Y
+	Y -> lambda
+	F -> function H id ( A ) Z { Z C }
+	H -> T
+	H -> lambda
+	T -> int
+	T -> bool
+	T -> chars
+	A -> T id K
+	A -> lambda
+	K -> , T id K
+	K -> lambda
+	B -> var T id
+	B -> if ( E ) S
+	B -> switch ( E ) { Z I }
+	B -> S
+	S -> id W 
+	S -> return X 
+	S -> write ( E ) 
+	S -> prompt ( id )
+	W -> = E 
+	W -> /= E 
+	W -> ( L )
+	X -> E 
+	X -> lambda
+	L -> E Q 
+	L -> lambda
+	Q -> , E Q 
+	Q -> lambda
+	I -> case int_const : J 
+	I -> lambda
+	J -> B Z J 
+	J -> break Z J 
+	J -> Z J 
+	J -> I
+	E -> ! E 
+	R -> V R
+	R -> + E 
+	R -> < E
+	R -> lambda
+	C -> B Z C 
+	C -> lambda
+	V -> id U 
+	V -> ( E ) 
+	V -> int_const 
+	V -> string_const
+	U -> ( L ) 
+	U -> lambda		
+}
