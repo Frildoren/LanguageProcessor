@@ -1,5 +1,5 @@
 package analyzers.syntactic;
 
-public interface SyntacticAnalizer {
+public interface SyntacticAnalyzer {
     void process();
 }

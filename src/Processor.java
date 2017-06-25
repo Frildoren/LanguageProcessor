@@ -1,4 +1,4 @@
-import analyzers.syntactic.SyntacticAnalizer;
+import analyzers.syntactic.SyntacticAnalyzer;
 import analyzers.syntactic.SyntacticAnalyzerImpl;
 import analyzers.tokenizer.Tokenizer;
 import analyzers.tokenizer.TokenizerImpl;
@@ -7,7 +7,6 @@ import exceptions.PDLException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.StringReader;
 
 public class Processor {
 
@@ -16,9 +15,9 @@ public class Processor {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
             Tokenizer tokenizer = new TokenizerImpl(reader);
-            SyntacticAnalizer syntacticAnalizer = new SyntacticAnalyzerImpl(tokenizer);
+            SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzerImpl(tokenizer);
 
-            syntacticAnalizer.process();
+            syntacticAnalyzer.process();
 
         } catch (PDLException e) {
             p(e.getMessage());
