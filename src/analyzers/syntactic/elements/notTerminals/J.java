@@ -30,7 +30,7 @@ public class J extends NotTerminalElement {
     }
 
     public int getRuleIndex() {
-        return 16;
+        return 38;
     }
 
 }

@@ -19,6 +19,6 @@ public class Z extends NotTerminalElement {
     }
 
     public int getRuleIndex() {
-        return 2;
+        return 4;
     }
 }
