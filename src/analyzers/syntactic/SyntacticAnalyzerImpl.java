@@ -97,7 +97,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalizer {
             if(head instanceof Lambda){
                 processToken(token);
             } else if(!((TokenElement) head).getTokenType().equals(token.getType())){
-                throw new SyntaxErrorException(token.getType().toString());
+                throw new SyntaxErrorException(token.getType().toString(), head.toString());
             }
 
         } catch (NoSuchElementException e){
