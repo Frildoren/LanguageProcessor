@@ -13,10 +13,12 @@ public class E extends NotTerminalElement {
 
     @Override
     public List<List<Element>> getBranchesClasses() {
-        // E -> ! E | V R
+        // E -> ! E | V R | true | false
         return Arrays.asList(
                 Arrays.asList(new Element[]{ new TokenElement(TokenType.OP_LOGIC_NEGATION), new E() }),
-                Arrays.asList(new Element[]{ new V(), new R() })
+                Arrays.asList(new Element[]{ new V(), new R() }),
+                Arrays.asList(new Element[]{ new TokenElement(TokenType.TRUE) }),
+                Arrays.asList(new Element[]{ new TokenElement(TokenType.FALSE) })
         );
     }
 
