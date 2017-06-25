@@ -4,9 +4,7 @@ import analyzers.tokenizer.Tokenizer;
 import analyzers.tokenizer.TokenizerImpl;
 import exceptions.PDLException;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 
 public class Processor {
 
@@ -19,9 +17,15 @@ public class Processor {
 
             syntacticAnalyzer.process();
 
+            BufferedWriter writer = new BufferedWriter(new FileWriter("parse.txt"));
+            writer.write(syntacticAnalyzer.getParse().toString());
+
+            reader.close();
+            writer.close();
+
         } catch (PDLException e) {
             p(e.getMessage());
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

@@ -43,10 +43,12 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
     private Tokenizer tokenizer;
     private Stack<Element> stack = new Stack<>();
+    private StringBuilder parse = new StringBuilder();
 
     public SyntacticAnalyzerImpl(Tokenizer tokenizer){
         this.tokenizer = tokenizer;
         stack.add(new P());
+        parse.append("Descendente: ");
     }
 
     @Override
@@ -71,7 +73,8 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 NotTerminalElement notTerminal = (NotTerminalElement) head;
                 List<Element> first = notTerminal.getFirst();
 
-                System.out.println("\t"+notTerminal.getClass().getSimpleName());
+                System.out.println("\t"+"["+notTerminal.getRuleIndex()+"] "+notTerminal.getClass().getSimpleName());
+                parse.append(notTerminal.getRuleIndex() + " ");
 
                 int i = -1;
                 for(int j=0; j<notTerminal.getBranchesClasses().size(); j++){
@@ -103,6 +106,11 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
             throw new SyntaxErrorException(token.getType().toString());
         }
 
+    }
+
+    @Override
+    public StringBuilder getParse() {
+        return parse;
     }
 
 }
