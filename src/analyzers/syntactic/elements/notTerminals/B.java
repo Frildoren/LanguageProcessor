@@ -38,7 +38,7 @@ public class B extends NotTerminalElement {
     }
 
     public int getRuleIndex() {
-        return 19;
+        return 20;
     }
 
 }
