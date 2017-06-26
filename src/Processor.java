@@ -2,6 +2,8 @@ import analyzers.syntactic.SyntacticAnalyzer;
 import analyzers.syntactic.SyntacticAnalyzerImpl;
 import analyzers.tokenizer.Tokenizer;
 import analyzers.tokenizer.TokenizerImpl;
+import errors.ErrorManager;
+import errors.ErrorManagerImpl;
 import exceptions.PDLException;
 
 import java.io.*;
@@ -10,10 +12,13 @@ public class Processor {
 
     public static void main(String[] args){
 
+        ErrorManager errorManager = null;
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            LineNumberReader reader = new LineNumberReader(new FileReader("input.txt"));
             Tokenizer tokenizer = new TokenizerImpl(reader);
             SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzerImpl(tokenizer);
+            errorManager = new ErrorManagerImpl();
 
             syntacticAnalyzer.process();
 
@@ -29,6 +34,7 @@ public class Processor {
             writerTokens.close();
 
         } catch (PDLException e) {
+            errorManager.writeError(e);
             p(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,4 +45,6 @@ public class Processor {
     static void p(String e){
         System.out.println(e);
     }
+
+
 }

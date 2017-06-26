@@ -20,7 +20,7 @@ public class ToE extends Transition {
     @Override
     public Token semanticRules() {
         if (Integer.parseInt(getTokenizer().getLexeme()) > 1<<15){
-            throw new ConstantIntegerException();
+            throw new ConstantIntegerException(getTokenizer().getIn().getLineNumber());
         }
 
         return new Token(TokenType.CONSTANT_INTEGER, getTokenizer().getLexeme());
