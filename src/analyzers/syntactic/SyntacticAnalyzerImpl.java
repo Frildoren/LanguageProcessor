@@ -88,7 +88,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                         throw new SyntaxErrorException(token.getType().toString(), first.toString());
                     }
                 } else {
-                    parse.append(" ").append(notTerminal.getRuleIndex() + 1);
+                    parse.append(" ").append(notTerminal.getRuleIndex() + i);
 
                     List<Element> elementsList = notTerminal.getBranchesClasses().get(i);
                     for (int j = elementsList.size() - 1; j >= 0; j--) {
