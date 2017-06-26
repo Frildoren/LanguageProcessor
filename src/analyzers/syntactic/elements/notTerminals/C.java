@@ -19,7 +19,7 @@ public class C extends NotTerminalElement {
     }
 
     public int getRuleIndex() {
-        return 47;
+        return 49;
     }
 
 }

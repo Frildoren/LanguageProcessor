@@ -17,7 +17,7 @@ import java.util.Stack;
 public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
     /*
-    P -> F Z P | B Z P | Z P
+    P -> F Z P | B Z P | Z P | lambda
     Z -> eol Y | ; Y
     Y -> eol Y | ; Y | lambda
     F -> function H id ( A ) Z { Z C }
