@@ -44,27 +44,38 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     private Tokenizer tokenizer;
     private Stack<Element> stack = new Stack<>();
     private StringBuilder parse = new StringBuilder();
+    private StringBuilder tokens = new StringBuilder();
 
-    public SyntacticAnalyzerImpl(Tokenizer tokenizer){
+    public SyntacticAnalyzerImpl(Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
         stack.add(new P());
         parse.append("Descendente");
     }
 
     @Override
-    public void process(){
+    public void process() {
         Token token;
         try {
             while ((token = tokenizer.readToken()) != null) {
                 System.out.println(token.getType());
+
+                tokens.append("<" + token.getType() + ", ");
+                if (token.getValue() == null){
+                    tokens.append(">\n");
+                }else{
+                    tokens.append(token.getValue() + ">\n");
+                }
                 processToken(token);
             }
-        } catch(EndOfInputException e){}
+        } catch (EndOfInputException e) {
+        }
     }
 
-    private void processToken(Token token){
 
-        if(stack.empty())
+
+    private void processToken(Token token) {
+
+        if (stack.empty())
             stack.add(new P());
 
         try {
@@ -73,18 +84,18 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 NotTerminalElement notTerminal = (NotTerminalElement) head;
                 List<Element> first = notTerminal.getFirst();
 
-                System.out.println("\t"+"["+notTerminal.getRuleIndex()+"] "+notTerminal.getClass().getSimpleName());
+                System.out.println("\t" + "[" + notTerminal.getRuleIndex() + "] " + notTerminal.getClass().getSimpleName());
 
                 int i = -1;
-                for(int j=0; j<notTerminal.getBranchesClasses().size(); j++){
-                    if(notTerminal.getBranchFirsts().get(j).contains(new TokenElement(token.getType())) || notTerminal.getBranchFirsts().get(j).contains(new Lambda())) {
+                for (int j = 0; j < notTerminal.getBranchesClasses().size(); j++) {
+                    if (notTerminal.getBranchFirsts().get(j).contains(new TokenElement(token.getType())) || notTerminal.getBranchFirsts().get(j).contains(new Lambda())) {
                         i = j;
                         break;
                     }
                 }
 
-                if(i == -1){
-                    if(!first.contains(new Lambda())){
+                if (i == -1) {
+                    if (!first.contains(new Lambda())) {
                         throw new SyntaxErrorException(token.getType().toString(), first.toString());
                     }
                 } else {
@@ -97,13 +108,13 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 }
             }
 
-            if(head instanceof Lambda){
+            if (head instanceof Lambda) {
                 processToken(token);
-            } else if(!((TokenElement) head).getTokenType().equals(token.getType())){
+            } else if (!((TokenElement) head).getTokenType().equals(token.getType())) {
                 throw new SyntaxErrorException(token.getType().toString(), head.toString());
             }
 
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new SyntaxErrorException(token.getType().toString());
         }
 
@@ -112,6 +123,11 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     @Override
     public StringBuilder getParse() {
         return parse;
+    }
+
+    @Override
+    public StringBuilder getTokens() {
+        return tokens;
     }
 
 }

@@ -20,8 +20,13 @@ public class Processor {
             BufferedWriter writer = new BufferedWriter(new FileWriter("parse.txt"));
             writer.write(syntacticAnalyzer.getParse().toString());
 
+            BufferedWriter writerTokens = new BufferedWriter(new FileWriter("tokens.txt"));
+            writerTokens.write(syntacticAnalyzer.getTokens().toString());
+
+
             reader.close();
             writer.close();
+            writerTokens.close();
 
         } catch (PDLException e) {
             p(e.getMessage());
