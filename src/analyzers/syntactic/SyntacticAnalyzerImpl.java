@@ -53,7 +53,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     }
 
     @Override
-    public void process() {
+    public void process(){
         Token token;
         try {
             while ((token = tokenizer.readToken()) != null) {
@@ -67,36 +67,33 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 }
                 processToken(token);
             }
-        } catch (EndOfInputException e) {
-        }
+        } catch(EndOfInputException e){}
     }
 
-
-
-    private void processToken(Token token) {
-
-        if (stack.empty())
-            stack.add(new P());
+    private void processToken(Token token){
 
         try {
+            int lambdaRule = -1;
             Element head;
             while ((head = stack.pop()) instanceof NotTerminalElement) {
                 NotTerminalElement notTerminal = (NotTerminalElement) head;
                 List<Element> first = notTerminal.getFirst();
 
-                System.out.println("\t" + "[" + notTerminal.getRuleIndex() + "] " + notTerminal.getClass().getSimpleName());
+                System.out.println("\t"+"["+notTerminal.getRuleIndex()+"] "+notTerminal.getClass().getSimpleName());
 
                 int i = -1;
-                for (int j = 0; j < notTerminal.getBranchesClasses().size(); j++) {
-                    if (notTerminal.getBranchFirsts().get(j).contains(new TokenElement(token.getType())) || notTerminal.getBranchFirsts().get(j).contains(new Lambda())) {
+                for(int j=0; j<notTerminal.getBranchesClasses().size(); j++){
+                    if(notTerminal.getBranchFirsts().get(j).contains(new TokenElement(token.getType())) || notTerminal.getBranchFirsts().get(j).contains(new Lambda())) {
                         i = j;
                         break;
                     }
                 }
 
-                if (i == -1) {
-                    if (!first.contains(new Lambda())) {
+                if(i == -1){
+                    if(!first.contains(new Lambda())){
                         throw new SyntaxErrorException(token.getType().toString(), first.toString());
+                    } else {
+                        lambdaRule = notTerminal.getRuleIndex() + i;
                     }
                 } else {
                     parse.append(" ").append(notTerminal.getRuleIndex() + i);
@@ -108,13 +105,19 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 }
             }
 
-            if (head instanceof Lambda) {
-                processToken(token);
-            } else if (!((TokenElement) head).getTokenType().equals(token.getType())) {
+            if(head instanceof Lambda){
+                parse.append(" ").append(lambdaRule);
+
+                if(!token.getType().equals(TokenType.EOF))
+                    processToken(token);
+                else
+                    throw new EndOfInputException();
+
+            } else if(!((TokenElement) head).getTokenType().equals(token.getType())){
                 throw new SyntaxErrorException(token.getType().toString(), head.toString());
             }
 
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e){
             throw new SyntaxErrorException(token.getType().toString());
         }
 
