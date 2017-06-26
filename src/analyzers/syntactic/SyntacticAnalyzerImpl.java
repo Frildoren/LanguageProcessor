@@ -6,6 +6,7 @@ import analyzers.syntactic.elements.notTerminals.P;
 import analyzers.syntactic.elements.terminals.Lambda;
 import analyzers.syntactic.elements.terminals.TokenElement;
 import analyzers.tokenizer.Tokenizer;
+import enums.TokenType;
 import exceptions.EndOfInputException;
 import exceptions.SyntaxErrorException;
 import structures.Token;
@@ -49,7 +50,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     public SyntacticAnalyzerImpl(Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
         stack.add(new P());
-        parse.append("Descendente");
+        parse.append("D");
     }
 
     @Override
@@ -58,13 +59,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
         try {
             while ((token = tokenizer.readToken()) != null) {
                 System.out.println(token.getType());
-
-                tokens.append("<" + token.getType() + ", ");
-                if (token.getValue() == null){
-                    tokens.append(">\n");
-                }else{
-                    tokens.append(token.getValue() + ">\n");
-                }
+                tokens.append(token.toString()).append((char) Character.LINE_SEPARATOR);
                 processToken(token);
             }
         } catch(EndOfInputException e){}
@@ -72,8 +67,10 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
     private void processToken(Token token){
 
+        if(stack.empty() && token.getType().equals(TokenType.EOF))
+            throw new EndOfInputException();
+
         try {
-            int lambdaRule = -1;
             Element head;
             while ((head = stack.pop()) instanceof NotTerminalElement) {
                 NotTerminalElement notTerminal = (NotTerminalElement) head;
@@ -92,8 +89,6 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 if(i == -1){
                     if(!first.contains(new Lambda())){
                         throw new SyntaxErrorException(token.getType().toString(), first.toString());
-                    } else {
-                        lambdaRule = notTerminal.getRuleIndex() + i;
                     }
                 } else {
                     parse.append(" ").append(notTerminal.getRuleIndex() + i);
@@ -106,12 +101,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
             }
 
             if(head instanceof Lambda){
-                parse.append(" ").append(lambdaRule);
-
-                if(!token.getType().equals(TokenType.EOF))
-                    processToken(token);
-                else
-                    throw new EndOfInputException();
+                processToken(token);
 
             } else if(!((TokenElement) head).getTokenType().equals(token.getType())){
                 throw new SyntaxErrorException(token.getType().toString(), head.toString());

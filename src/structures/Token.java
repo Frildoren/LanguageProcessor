@@ -18,7 +18,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return "<" + type.name() + ", " + value + '>';
+        return "<" + type.name() + ", " + (value == null ? "" : value) + '>';
     }
 
     public TokenType getType() {

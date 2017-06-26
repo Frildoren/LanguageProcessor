@@ -1,6 +1,7 @@
 package analyzers.tokenizer;
 
 import analyzers.tokenizer.transitions.Transition;
+import enums.TokenType;
 import exceptions.EndOfInputException;
 import exceptions.PDLException;
 import exceptions.UnexpectedInputException;
@@ -58,7 +59,7 @@ public class TokenizerImpl implements Tokenizer {
 
             if(!anyValid){
                 if(currentChar < 0 || currentChar == Character.MAX_VALUE) {
-                    throw new EndOfInputException();
+                    return new Token(TokenType.EOF);
                 }
 
                 throw new UnexpectedInputException(String.format("Unexpected character: '%c'", currentChar));

@@ -1,11 +1,11 @@
-Terminales = { id /= ! = ( ) { } : ; eol int_const string_const + < , var true false write prompt int chars bool if else return break case switch function }
+Terminales = { id /= ! = ( ) { } : ; eol int_const string_const + < , var true false write prompt int chars bool if else return break case switch function eof }
 NoTerminales = { P Z Y F H T A K B S W X L Q I J E R C V U }
 Axioma = P
 Producciones = {
-	P -> F Z P
-	P -> B Z P
+	P -> F P
+	P -> B P
 	P -> Z P
-	P -> lambda
+	P -> eof
 	Z -> eol Y
 	Z -> ; Y
 	Y -> eol Y
