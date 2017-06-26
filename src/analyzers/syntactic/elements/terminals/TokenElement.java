@@ -2,8 +2,9 @@ package analyzers.syntactic.elements.terminals;
 
 import analyzers.syntactic.elements.TerminalElement;
 import enums.TokenType;
+import structures.Symbol;
 
-public class TokenElement extends TerminalElement {
+public class TokenElement extends TerminalElement implements Symbol {
 
     private final TokenType tokenType;
 

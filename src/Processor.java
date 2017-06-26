@@ -1,3 +1,5 @@
+import analyzers.semantic.SemanticAnalyzer;
+import analyzers.semantic.SemanticAnalyzerImpl;
 import analyzers.syntactic.SyntacticAnalyzer;
 import analyzers.syntactic.SyntacticAnalyzerImpl;
 import analyzers.tokenizer.Tokenizer;
@@ -13,7 +15,8 @@ public class Processor {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
             Tokenizer tokenizer = new TokenizerImpl(reader);
-            SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzerImpl(tokenizer);
+            SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzerImpl();
+            SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzerImpl(tokenizer, semanticAnalyzer);
 
             syntacticAnalyzer.process();
 

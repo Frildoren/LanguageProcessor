@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class SymbolTableList extends ArrayList<SymbolTable> {
 
     public SymbolTableList(){
-        SymbolTable root = new SymbolTable();
+        SymbolTable root = new SymbolTable("GLOBAL");
         add(root);
     }
 
@@ -33,8 +33,8 @@ public class SymbolTableList extends ArrayList<SymbolTable> {
             get(size()-1).put(index, symbol);
     }
 
-    public void pushTable(){
-        add(new SymbolTable());
+    public void pushTable(String name){
+        add(new SymbolTable(name));
     }
 
     public void popTable(){

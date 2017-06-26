@@ -1,6 +1,7 @@
 package analyzers.syntactic.elements;
 
 import analyzers.syntactic.elements.terminals.Lambda;
+import structures.Symbol;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +9,9 @@ import java.util.List;
 public abstract class NotTerminalElement extends BaseElement {
 
     public abstract List<List<Element>> getBranchesClasses();
-
     public abstract int getRuleIndex();
+
+    private Symbol symbol;
 
     public List<List<Element>> getBranches(){
         List<List<Element>> result = new ArrayList<>();
@@ -64,4 +66,11 @@ public abstract class NotTerminalElement extends BaseElement {
         return result;
     }
 
+    public Symbol getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(Symbol symbol) {
+        this.symbol = symbol;
+    }
 }

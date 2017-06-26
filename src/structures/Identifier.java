@@ -1,22 +1,31 @@
 package structures;
 
 import enums.TokenType;
-import enums.VariableType;
 
 public class Identifier implements Symbol {
 
-    VariableType type;
+    Symbol type;
+    String id;
 
-    public Identifier(VariableType type){
+    public Identifier(String id, TokenType type){
         this.type = type;
+        this.id = id;
     }
 
-    public VariableType getType() {
+    public Symbol getType() {
         return type;
     }
 
-    public void setType(VariableType type) {
+    public void setType(Symbol type) {
         this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public TokenType getTokenType() {

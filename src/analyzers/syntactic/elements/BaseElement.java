@@ -1,5 +1,8 @@
 package analyzers.syntactic.elements;
 
+import analyzers.semantic.SemanticAnalyzer;
+import structures.Token;
+
 public abstract class BaseElement implements Element {
 
     @Override
@@ -11,4 +14,10 @@ public abstract class BaseElement implements Element {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    @Override
+    public void semanticActions(SemanticAnalyzer semanticAnalyzer, Token token) {}
+
+    @Override
+    public void semanticDone(SemanticAnalyzer semanticAnalyzer){}
 }

@@ -1,5 +1,6 @@
 package analyzers.syntactic;
 
+import analyzers.semantic.SemanticAnalyzer;
 import analyzers.syntactic.elements.Element;
 import analyzers.syntactic.elements.NotTerminalElement;
 import analyzers.syntactic.elements.notTerminals.P;
@@ -18,17 +19,17 @@ import java.util.Stack;
 public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
     /*
-    P -> F Z P | B Z P | Z P | lambda
+    P -> F P | B P | Z P | eol
     Z -> eol Y | ; Y
     Y -> eol Y | ; Y | lambda
-    F -> function H id ( A ) Z { Z C }
-    H -> T | lambda
-    T -> int | bool | chars
-    A -> T id K | lambda
-    K -> , T id K | lambda
+  * F -> function H id ( A ) Z { Z C }
+  *  H -> T | lambda
+  *  T -> int | bool | chars
+  *  A -> T id K | lambda
+  *  K -> , T id K | lambda
 
-    B -> var T id | if ( E ) S | switch ( E ) { Z I } | S
-    S -> id W | return X | write ( E ) | prompt ( id )
+  *  B -> var T id | if ( E ) S | switch ( E ) { Z I } | S
+  *  S -> id W | return X | write ( E ) | prompt ( id )
     W -> = E | /= E | ( L )
     X -> E | lambda
     L -> E Q | lambda
@@ -43,12 +44,16 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
      */
 
     private Tokenizer tokenizer;
+    private SemanticAnalyzer semanticAnalyzer;
+
     private Stack<Element> stack = new Stack<>();
     private StringBuilder parse = new StringBuilder();
     private StringBuilder tokens = new StringBuilder();
 
-    public SyntacticAnalyzerImpl(Tokenizer tokenizer) {
+    public SyntacticAnalyzerImpl(Tokenizer tokenizer, SemanticAnalyzer semanticAnalyzer) {
         this.tokenizer = tokenizer;
+        this.semanticAnalyzer = semanticAnalyzer;
+
         stack.add(new P());
         parse.append("D");
     }
@@ -76,8 +81,6 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 NotTerminalElement notTerminal = (NotTerminalElement) head;
                 List<Element> first = notTerminal.getFirst();
 
-                System.out.println("\t"+"["+notTerminal.getRuleIndex()+"] "+notTerminal.getClass().getSimpleName());
-
                 int i = -1;
                 for(int j=0; j<notTerminal.getBranchesClasses().size(); j++){
                     if(notTerminal.getBranchFirsts().get(j).contains(new TokenElement(token.getType())) || notTerminal.getBranchFirsts().get(j).contains(new Lambda())) {
@@ -99,6 +102,8 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                     }
                 }
             }
+
+            head.semanticActions(semanticAnalyzer, token);
 
             if(head instanceof Lambda){
                 processToken(token);

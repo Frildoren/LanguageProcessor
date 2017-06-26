@@ -1,8 +1,10 @@
 package enums;
 
+import structures.Symbol;
+
 import java.util.EnumSet;
 
-public enum TokenType {
+public enum TokenType implements Symbol {
 
     IDENTIFIER("identifier"),
     DIVIDE_AND_ASSIGN("divideAndAssign"),
@@ -43,6 +45,11 @@ public enum TokenType {
 
     TokenType(String name) {
         this.name = name;
+    }
+
+    @Override
+    public TokenType getTokenType() {
+        return this;
     }
 
     public static final EnumSet<TokenType> RESERVED_WORDS = EnumSet.of(VAR, TRUE, FALSE, WRITE, PROMPT, INT, CHARS, BOOL, IF, ELSE, RETURN, BREAK,

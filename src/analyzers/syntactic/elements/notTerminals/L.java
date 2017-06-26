@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class L extends NotTerminalElement {
+
+
+
     @Override
     public List<List<Element>> getBranchesClasses() {
         //L -> E Q | lambda

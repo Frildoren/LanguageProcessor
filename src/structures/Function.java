@@ -1,23 +1,30 @@
 package structures;
 
-import enums.VariableType;
+import enums.TokenType;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Function extends Identifier {
 
-    VariableType returnType;
+    Symbol returnType;
+    Map<String, Symbol> parameters = new LinkedHashMap<>();
 
-    public Function(VariableType returnType){
-            super(VariableType.FUNCTION);
+    public Function(String id, Symbol returnType){
+            super(id, TokenType.FUNCTION);
             this.returnType = returnType;
     }
 
-    public VariableType getReturnType() {
+    public Symbol getReturnType() {
         return returnType;
     }
 
-    public void setReturnType(VariableType returnType) {
+    public void setReturnType(Symbol returnType) {
         this.returnType = returnType;
     }
 
+    public Map<String, Symbol> getParameters() {
+        return parameters;
+    }
 }
 
