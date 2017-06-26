@@ -11,7 +11,7 @@ public class Processor {
     public static void main(String[] args){
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            LineNumberReader reader = new LineNumberReader(new FileReader("input.txt"));
             Tokenizer tokenizer = new TokenizerImpl(reader);
             SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzerImpl(tokenizer);
 

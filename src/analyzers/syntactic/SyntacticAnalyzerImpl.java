@@ -11,6 +11,7 @@ import exceptions.EndOfInputException;
 import exceptions.SyntaxErrorException;
 import structures.Token;
 
+import java.io.LineNumberReader;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Stack;
@@ -59,6 +60,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
         try {
             while ((token = tokenizer.readToken()) != null) {
                 System.out.println(token.getType());
+                System.out.println(tokenizer.getIn().getLineNumber()+1);
                 processToken(token);
                 tokens.append(token.toString()).append((char) Character.LINE_SEPARATOR);
             }

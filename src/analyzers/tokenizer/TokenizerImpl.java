@@ -9,17 +9,18 @@ import structures.Token;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.LineNumberReader;
 import java.util.List;
 
 public class TokenizerImpl implements Tokenizer {
 
-    private BufferedReader in;
+    private LineNumberReader in;
 
     private char currentChar;
     private char currentState;
     private String lexeme;
 
-    public TokenizerImpl(BufferedReader in) {
+    public TokenizerImpl(LineNumberReader in) {
         this.in = in;
         resetState();
         read();
@@ -83,5 +84,8 @@ public class TokenizerImpl implements Tokenizer {
     public String getLexeme() {
         return lexeme;
     }
+
+    @Override
+    public LineNumberReader getIn() { return in; }
 
 }
