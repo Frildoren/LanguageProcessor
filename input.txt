@@ -1,1 +1,10 @@
 var chars s;
+
+function int FactorialRecursivo (int n)
+{
+	n = 1+1
+}
+
+s = "hola"
+
+FactoriarRecursivo(a < 4)

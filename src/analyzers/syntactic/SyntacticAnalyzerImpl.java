@@ -59,8 +59,8 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
         try {
             while ((token = tokenizer.readToken()) != null) {
                 System.out.println(token.getType());
-                tokens.append(token.toString()).append((char) Character.LINE_SEPARATOR);
                 processToken(token);
+                tokens.append(token.toString()).append((char) Character.LINE_SEPARATOR);
             }
         } catch(EndOfInputException e){}
     }
