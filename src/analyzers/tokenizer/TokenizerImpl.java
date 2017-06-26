@@ -63,7 +63,7 @@ public class TokenizerImpl implements Tokenizer {
                     return new Token(TokenType.EOF);
                 }
 
-                throw new UnexpectedInputException(String.format("Unexpected character: '%c'", currentChar));
+                throw new UnexpectedInputException(String.format("Unexpected character: '%c'", currentChar), getIn().getLineNumber());
             }
 
         }
