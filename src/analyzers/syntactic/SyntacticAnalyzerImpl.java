@@ -23,15 +23,15 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     P -> F P | B P | Z P | eol
     Z -> eol Y | ; Y
     Y -> eol Y | ; Y | lambda
-  * F -> function H id ( A ) Z { Z C }
-  *  H -> T | lambda
-  *  T -> int | bool | chars
-  *  A -> T id K | lambda
-  *  K -> , T id K | lambda
+    F -> function H id ( A ) Z { Z C }
+    H -> T | lambda
+    T -> int | bool | chars
+    A -> T id K | lambda
+    K -> , T id K | lambda
 
-  *  B -> var T id | if ( E ) S | switch ( E ) { Z I } | S
-  *  S -> id W | return X | write ( E ) | prompt ( id )
-    W -> = E | /= E | ( L )
+    B -> var T id | if ( E ) S | switch ( E ) { Z I } | S
+    S -> id W | return X | write ( E ) | prompt ( id )
+    W -> = E | /= E | W
     X -> E | lambda
     L -> E Q | lambda
     Q -> , E Q | lambda

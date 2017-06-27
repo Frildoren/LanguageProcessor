@@ -7,7 +7,7 @@ public abstract class BaseElement implements Element {
 
     @Override
     public boolean equals(Object o) {
-        return getClass().equals(o.getClass());
+        return (o.getClass().isAssignableFrom(getClass())) || (getClass().isAssignableFrom(o.getClass()));
     }
 
     @Override

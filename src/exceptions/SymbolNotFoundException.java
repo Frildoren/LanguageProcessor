@@ -2,8 +2,6 @@ package exceptions;
 
 public class SymbolNotFoundException extends PDLException {
 
-    public SymbolNotFoundException() { super("Symbol not found"); }
-
     public SymbolNotFoundException(int errorLine) {
         super("Symbol not found", errorLine);
     }
@@ -14,5 +12,9 @@ public class SymbolNotFoundException extends PDLException {
 
     public SymbolNotFoundException(Exception e) {
         super(e);
+    }
+
+    public SymbolNotFoundException(String index) {
+        super("Symbol not found: " + index);
     }
 }

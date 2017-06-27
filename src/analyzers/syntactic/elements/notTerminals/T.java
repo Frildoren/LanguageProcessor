@@ -21,21 +21,21 @@ public class T extends NotTerminalElement {
                     @Override
                     public void semanticActions(SemanticAnalyzer semanticAnalyzer, Token token) {
                         setSymbol(getTokenType());
-                        semanticDone(semanticAnalyzer);
+                        T.this.semanticDone(semanticAnalyzer);
                     }
                 }}),
                 Arrays.asList(new Element[] {new TokenElement(TokenType.BOOL){
                     @Override
                     public void semanticActions(SemanticAnalyzer semanticAnalyzer, Token token) {
                         setSymbol(getTokenType());
-                        semanticDone(semanticAnalyzer);
+                        T.this.semanticDone(semanticAnalyzer);
                     }
                 }}),
                 Arrays.asList(new Element[] {new TokenElement(TokenType.CHARS){
                     @Override
                     public void semanticActions(SemanticAnalyzer semanticAnalyzer, Token token) {
                         setSymbol(getTokenType());
-                        semanticDone(semanticAnalyzer);
+                        T.this.semanticDone(semanticAnalyzer);
                     }
                 }})
         );

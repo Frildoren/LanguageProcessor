@@ -29,7 +29,7 @@ public class Identifier implements Symbol {
     }
 
     public TokenType getTokenType() {
-        return TokenType.IDENTIFIER;
+        return (TokenType) getType();
     }
 }
 

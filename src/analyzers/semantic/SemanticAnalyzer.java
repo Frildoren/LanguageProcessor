@@ -23,4 +23,8 @@ public interface SemanticAnalyzer {
     void validateSymbol(Symbol symbol, Symbol expectedSymbol);
 
     void validateReturn(Symbol symbol);
+
+    Symbol findSymbol(String id);
+
+    String getSymbolTables();
 }

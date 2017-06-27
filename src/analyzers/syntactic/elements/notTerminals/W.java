@@ -5,6 +5,7 @@ import analyzers.syntactic.elements.Element;
 import analyzers.syntactic.elements.NotTerminalElement;
 import analyzers.syntactic.elements.terminals.TokenElement;
 import enums.TokenType;
+import structures.Function;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,7 @@ public class W extends NotTerminalElement {
                             @Override
                             public void semanticDone(SemanticAnalyzer semanticAnalyzer) {
                                 W.this.setSymbol(getSymbol());
+
                             }
                         }}),
                 Arrays.asList(new Element[]{
@@ -29,11 +31,20 @@ public class W extends NotTerminalElement {
                             public void semanticDone(SemanticAnalyzer semanticAnalyzer) {
                                 W.this.setSymbol(TokenType.INT);
                                 semanticAnalyzer.validateSymbol(getSymbol(), TokenType.INT);
+                                W.this.semanticDone(semanticAnalyzer);
                             }
                         }}),
                 Arrays.asList(new Element[]{
                         new TokenElement(TokenType.OPEN_PARENTHESIS),
-                        new L(),
+                        new L(){
+                            @Override
+                            public void semanticDone(SemanticAnalyzer semanticAnalyzer) {
+                                Function function = new Function(null, null);
+                                function.getParameters().putAll(parameters);
+                                W.this.setSymbol(function);
+                                W.this.semanticDone(semanticAnalyzer);
+                            }
+                        },
                         new TokenElement(TokenType.CLOSE_PARENTHESIS)})
         );
     }

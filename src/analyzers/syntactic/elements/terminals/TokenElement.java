@@ -19,12 +19,13 @@ public class TokenElement extends TerminalElement implements Symbol {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
 
-        TokenElement that = (TokenElement) o;
-
-        return tokenType == that.tokenType;
+        try {
+            TokenElement that = (TokenElement) o;
+            return tokenType == that.tokenType;
+        } catch (ClassCastException e){
+            return false;
+        }
     }
 
     @Override

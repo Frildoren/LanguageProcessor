@@ -31,10 +31,14 @@ public class Processor {
             BufferedWriter writerTokens = new BufferedWriter(new FileWriter("tokens.txt"));
             writerTokens.write(syntacticAnalyzer.getTokens().toString());
 
+            BufferedWriter writeTables = new BufferedWriter(new FileWriter("ts.txt"));
+            writeTables.write(semanticAnalyzer.getSymbolTables());
+
 
             reader.close();
             writer.close();
             writerTokens.close();
+            writeTables.close();
 
         } catch (PDLException e) {
             errorManager.writeError(e);

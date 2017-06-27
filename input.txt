@@ -1,1 +1,6 @@
-var bool bool;
+function fun(int a)
+{
+a = 2;
+}
+
+fun("hola")

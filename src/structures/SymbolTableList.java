@@ -21,7 +21,7 @@ public class SymbolTableList extends ArrayList<SymbolTable> {
             }
         }
 
-        throw new SymbolNotFoundException();
+        throw new SymbolNotFoundException(index);
     }
 
     public Symbol find(Token token) throws SymbolNotFoundException {
@@ -37,8 +37,8 @@ public class SymbolTableList extends ArrayList<SymbolTable> {
         add(new SymbolTable(name));
     }
 
-    public void popTable(){
-        remove(size()-1);
+    public SymbolTable popTable(){
+        return remove(size()-1);
     }
 
 }

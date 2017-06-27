@@ -27,7 +27,8 @@ public class B extends NotTerminalElement {
                         new TokenElement(TokenType.IDENTIFIER){
                             @Override
                             public void semanticActions(SemanticAnalyzer semanticAnalyzer, Token token) {
-                                B.this.setSymbol(new Identifier(token.getValue(), B.this.getSymbol().getTokenType()));
+                                Identifier identifier = new Identifier(token.getValue(), B.this.getSymbol().getTokenType());
+                                semanticAnalyzer.addIdentifier(identifier);
                             }
                         }}),
                 Arrays.asList(new Element[]{
