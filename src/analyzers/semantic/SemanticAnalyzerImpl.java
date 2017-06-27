@@ -1,6 +1,7 @@
 package analyzers.semantic;
 
 import analyzers.syntactic.elements.Element;
+import analyzers.tokenizer.Tokenizer;
 import enums.TokenType;
 import exceptions.PDLException;
 import exceptions.SemanticErrorException;
@@ -14,10 +15,12 @@ import java.util.Map;
 
 public class SemanticAnalyzerImpl implements SemanticAnalyzer {
 
+    private Tokenizer tokenizer;
     private SymbolTableList symbolTables;
     private List<SymbolTable> usedTables;
 
-    public SemanticAnalyzerImpl(){
+    public SemanticAnalyzerImpl(Tokenizer tokenizer){
+        this.tokenizer = tokenizer;
         symbolTables = new SymbolTableList();
         usedTables = new ArrayList<>();
     }
@@ -50,7 +53,7 @@ public class SemanticAnalyzerImpl implements SemanticAnalyzer {
     public void validateIdentifier(Identifier identifier){
         TokenType tableIdentifier = ((TokenType) symbolTables.find(identifier.getId()));
         if(!identifier.getTokenType().equals(tableIdentifier)){
-            throw new SemanticErrorException(identifier.getId() + " was declared with type " + tableIdentifier.getTokenType());
+            throw new SemanticErrorException(identifier.getId() + " was declared with type " + tableIdentifier.getTokenType(), tokenizer.getIn().getLineNumber());
         }
     }
 
@@ -59,25 +62,25 @@ public class SemanticAnalyzerImpl implements SemanticAnalyzer {
         try {
             Function expectedFunction = (Function) symbolTables.find(function.getId());
             if(function.getParameters().size() != expectedFunction.getParameters().size()){
-                throw new SemanticErrorException("wrong number of parameters");
+                throw new SemanticErrorException("wrong number of parameters", tokenizer.getIn().getLineNumber());
             }
             for(int i=0; i<function.getParameters().size(); i++){
                 Symbol symbol = new ArrayList<>(function.getParameters().values()).get(i);
                 Symbol expectedSymbol = new ArrayList<>(expectedFunction.getParameters().values()).get(i);
                 if(!symbol.getTokenType().equals(expectedSymbol.getTokenType())){
-                    throw new SemanticErrorException("parameter " + (i+1) + " expected to be " + expectedSymbol.getTokenType());
+                    throw new SemanticErrorException("parameter " + (i+1) + " expected to be " + expectedSymbol.getTokenType(), tokenizer.getIn().getLineNumber());
                 }
             }
 
         } catch(ClassCastException e){
-            throw new SemanticErrorException(function.getId() + " is not a function");
+            throw new SemanticErrorException(function.getId() + " is not a function", tokenizer.getIn().getLineNumber());
         }
     }
 
     @Override
     public void validateSymbol(Symbol symbol, Symbol expectedSymbol){
         if(!expectedSymbol.equals(symbol)){
-            throw new SemanticErrorException("expected type " + expectedSymbol.getTokenType());
+            throw new SemanticErrorException("expected type " + expectedSymbol.getTokenType(), tokenizer.getIn().getLineNumber());
         }
     }
 
@@ -88,10 +91,10 @@ public class SemanticAnalyzerImpl implements SemanticAnalyzer {
             Function function = (Function) symbolTables.find(name);
 
             if(function.getReturnType() != symbol && (function.getReturnType() == null || !function.getReturnType().equals(symbol))){
-                throw new SemanticErrorException("return type mismatch, expected " + (function.getReturnType() == null ? null : function.getReturnType()));
+                throw new SemanticErrorException("return type mismatch, expected " + (function.getReturnType() == null ? null : function.getReturnType()), tokenizer.getIn().getLineNumber());
             }
         } catch(SymbolNotFoundException e){
-            throw new SemanticErrorException("return not allowed here");
+            throw new SemanticErrorException("return not allowed here", tokenizer.getIn().getLineNumber());
         }
     }
 

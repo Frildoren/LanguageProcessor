@@ -20,7 +20,7 @@ public class Processor {
             LineNumberReader reader = new LineNumberReader(new FileReader("input.txt"));
             Tokenizer tokenizer = new TokenizerImpl(reader);
             errorManager = new ErrorManagerImpl();
-            SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzerImpl();
+            SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzerImpl(tokenizer);
             SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzerImpl(tokenizer, semanticAnalyzer);
 
             syntacticAnalyzer.process();
