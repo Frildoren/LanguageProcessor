@@ -12,6 +12,7 @@ import exceptions.EndOfInputException;
 import exceptions.SyntaxErrorException;
 import structures.Token;
 
+import java.io.LineNumberReader;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Stack;
@@ -73,7 +74,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
     private void processToken(Token token){
 
         if(stack.empty() && token.getType().equals(TokenType.EOF))
-            throw new EndOfInputException();
+            throw new EndOfInputException(tokenizer.getIn().getLineNumber());
 
         try {
             Element head;
@@ -91,7 +92,7 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
 
                 if(i == -1){
                     if(!first.contains(new Lambda())){
-                        throw new SyntaxErrorException(token.getType().toString(), first.toString());
+                        throw new SyntaxErrorException(token.getType().toString(), first.toString(), tokenizer.getIn().getLineNumber());
                     }
                 } else {
                     parse.append(" ").append(notTerminal.getRuleIndex() + i);
@@ -109,11 +110,11 @@ public class SyntacticAnalyzerImpl implements SyntacticAnalyzer {
                 processToken(token);
 
             } else if(!((TokenElement) head).getTokenType().equals(token.getType())){
-                throw new SyntaxErrorException(token.getType().toString(), head.toString());
+                throw new SyntaxErrorException(token.getType().toString(), head.toString(), tokenizer.getIn().getLineNumber());
             }
 
         } catch (NoSuchElementException e){
-            throw new SyntaxErrorException(token.getType().toString());
+            throw new SyntaxErrorException(token.getType().toString(), tokenizer.getIn().getLineNumber());
         }
 
     }

@@ -1,1 +1,1 @@
-var chars s;
+var bool bool;

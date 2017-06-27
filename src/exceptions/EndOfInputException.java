@@ -2,7 +2,7 @@ package exceptions;
 
 
 public class EndOfInputException extends PDLException {
-    public EndOfInputException() {
-        super("End of input");
+    public EndOfInputException(int errorLine) {
+        super("End of input", errorLine);
     }
 }
